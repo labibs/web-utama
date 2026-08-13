@@ -1,0 +1,16 @@
+{
+  "name": "Sakte.id",
+  "short_name": "Sakte",
+  "description": "PT. Satya Karya Technosolution Landing Page",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080D27",
+  "theme_color": "#2EF2FF",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
