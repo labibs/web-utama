@@ -24,6 +24,16 @@ const prototypes = [
     displayUrl: "sakti-pos.vercel.app",
     image: "/images/sakti-yes.png",
   },
+  {
+    id: "2",
+    title: "Satya ERP",
+    subtitle: "Business Command Center",
+    description:
+      "Prototipe ERP terpadu untuk menyatukan insight eksekutif, pengelolaan SDM, portofolio proyek, keuangan, serta CRM dalam satu business command center yang responsif dan mudah digunakan.",
+    url: "https://satya-erp.sakte.id/",
+    displayUrl: "satya-erp.sakte.id",
+    livePreview: true,
+  },
 ];
 
 const Download = () => {
@@ -114,19 +124,40 @@ const Download = () => {
                     <div className="w-8 h-1 sm:w-10 sm:h-1 bg-[#222] rounded-full" />
                   </div>
                   <div className="relative size-full overflow-hidden rounded-[30px] sm:rounded-[40px] bg-black">
-                    {prototypes.map((proto) => (
-                      <img
-                        key={proto.id}
-                        src={proto.image}
-                        alt={proto.title}
-                        className={clsx(
-                          "absolute inset-0 size-full object-cover transition-all duration-700 ease-in-out",
-                          activeProto.id === proto.id
-                            ? "opacity-100 scale-100"
-                            : "opacity-0 scale-105 pointer-events-none",
-                        )}
-                      />
-                    ))}
+                    {prototypes.map((proto) => {
+                      const isActive = activeProto.id === proto.id;
+
+                      if (proto.livePreview) {
+                        return (
+                          <iframe
+                            key={proto.id}
+                            src={proto.url}
+                            title={`Preview interaktif ${proto.title}`}
+                            loading="lazy"
+                            className={clsx(
+                              "absolute inset-0 size-full border-0 bg-white transition-opacity duration-700 ease-in-out",
+                              isActive
+                                ? "opacity-100 pointer-events-auto"
+                                : "opacity-0 pointer-events-none",
+                            )}
+                          />
+                        );
+                      }
+
+                      return (
+                        <img
+                          key={proto.id}
+                          src={proto.image}
+                          alt={proto.title}
+                          className={clsx(
+                            "absolute inset-0 size-full object-cover transition-all duration-700 ease-in-out",
+                            isActive
+                              ? "opacity-100 scale-100"
+                              : "opacity-0 scale-105 pointer-events-none",
+                          )}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               </div>
