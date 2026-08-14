@@ -1,5 +1,5 @@
 import { Element } from "react-scroll";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Marker } from "../components/Marker.jsx";
 import clsx from "clsx";
 
@@ -58,6 +58,28 @@ const prototypes = [
 
 const Download = () => {
   const [activeProto, setActiveProto] = useState(prototypes[0]);
+  const prototypeNavRef = useRef(null);
+  const activeIndex = prototypes.findIndex(
+    (proto) => proto.id === activeProto.id,
+  );
+
+  useEffect(() => {
+    const activeButton = prototypeNavRef.current?.querySelector(
+      `[data-prototype-id="${activeProto.id}"]`,
+    );
+
+    activeButton?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [activeProto.id]);
+
+  const selectPrototype = (index) => {
+    if (index >= 0 && index < prototypes.length) {
+      setActiveProto(prototypes[index]);
+    }
+  };
 
   return (
     <section>
@@ -75,21 +97,80 @@ const Download = () => {
                 </p>
               </div>
 
-              <div className="scroll-hide mb-10 flex gap-3 overflow-x-auto pb-4 justify-start">
-                {prototypes.map((proto) => (
-                  <button
-                    key={proto.id}
-                    onClick={() => setActiveProto(proto)}
-                    className={clsx(
-                      "base-bold shrink-0 rounded-2xl border-2 px-5 py-2.5 transition-all duration-300 text-sm",
-                      activeProto.id === proto.id
-                        ? "border-p1 bg-p1/10 text-p1"
-                        : "border-s3 text-p5 hover:border-p1/50",
-                    )}
+              <div className="mb-10">
+                <div
+                  ref={prototypeNavRef}
+                  className="scroll-hide flex snap-x snap-mandatory gap-3 overflow-x-auto pb-4 scroll-smooth touch-pan-x"
+                >
+                  {prototypes.map((proto) => (
+                    <button
+                      key={proto.id}
+                      data-prototype-id={proto.id}
+                      onClick={() => setActiveProto(proto)}
+                      className={clsx(
+                        "base-bold shrink-0 snap-start rounded-2xl border-2 px-5 py-2.5 transition-all duration-300 text-sm",
+                        activeProto.id === proto.id
+                          ? "border-p1 bg-p1/10 text-p1"
+                          : "border-s3 text-p5 hover:border-p1/50",
+                      )}
+                    >
+                      {proto.title}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-1 flex items-center justify-between gap-4">
+                  <div
+                    className="flex items-center gap-2"
+                    role="group"
+                    aria-label="Pilih halaman prototype"
                   >
-                    {proto.title}
-                  </button>
-                ))}
+                    {prototypes.map((proto, index) => (
+                      <button
+                        key={proto.id}
+                        type="button"
+                        onClick={() => selectPrototype(index)}
+                        aria-label={`Tampilkan ${proto.title}`}
+                        aria-current={activeIndex === index ? "true" : undefined}
+                        className={clsx(
+                          "h-2 rounded-full transition-all duration-300",
+                          activeIndex === index
+                            ? "w-7 bg-p1"
+                            : "w-2 bg-s3 hover:bg-p5",
+                        )}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="mr-1 text-xs font-semibold tracking-widest text-p5/70">
+                      {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                      {String(prototypes.length).padStart(2, "0")}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => selectPrototype(activeIndex - 1)}
+                      disabled={activeIndex === 0}
+                      aria-label="Prototype sebelumnya"
+                      className="flex size-9 items-center justify-center rounded-full border-2 border-s3 text-p4 transition-all hover:border-p1 hover:text-p1 disabled:cursor-not-allowed disabled:opacity-30"
+                    >
+                      <span aria-hidden="true">←</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => selectPrototype(activeIndex + 1)}
+                      disabled={activeIndex === prototypes.length - 1}
+                      aria-label="Prototype berikutnya"
+                      className="flex size-9 items-center justify-center rounded-full border-2 border-p1 bg-p1/10 text-p1 transition-all hover:bg-p1 hover:text-s1 disabled:cursor-not-allowed disabled:border-s3 disabled:bg-transparent disabled:text-p5 disabled:opacity-30"
+                    >
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </div>
+                </div>
+
+                <p className="small-compact mt-3 text-s3 md:hidden">
+                  Geser pilihan untuk melihat prototype lainnya →
+                </p>
               </div>
 
               <div className="min-h-[160px] transition-all duration-500 mb-8 text-left">
