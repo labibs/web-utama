@@ -34,6 +34,26 @@ const prototypes = [
     displayUrl: "satya-erp.sakte.id",
     livePreview: true,
   },
+  {
+    id: "3",
+    title: "Saku Santri",
+    subtitle: "Keuangan Pesantren Terintegrasi",
+    description:
+      "Dashboard keuangan pesantren untuk memantau saldo kas, pembayaran SPP, iuran, tabungan, serta status penagihan santri secara terpusat, transparan, dan mudah digunakan.",
+    url: "https://saku-santri.sakte.id/",
+    displayUrl: "saku-santri.sakte.id",
+    livePreview: true,
+  },
+  {
+    id: "4",
+    title: "Misykatmart",
+    subtitle: "E-Commerce untuk Bisnis",
+    description:
+      "Konsep toko online profesional untuk UMKM, distributor, reseller, dan brand yang ingin berkembang dari toko tunggal menuju marketplace mini multi-vendor.",
+    url: "https://misykatmart.sakte.id/landing",
+    displayUrl: "misykatmart.sakte.id/landing",
+    livePreview: true,
+  },
 ];
 
 const Download = () => {
@@ -124,40 +144,22 @@ const Download = () => {
                     <div className="w-8 h-1 sm:w-10 sm:h-1 bg-[#222] rounded-full" />
                   </div>
                   <div className="relative size-full overflow-hidden rounded-[30px] sm:rounded-[40px] bg-black">
-                    {prototypes.map((proto) => {
-                      const isActive = activeProto.id === proto.id;
-
-                      if (proto.livePreview) {
-                        return (
-                          <iframe
-                            key={proto.id}
-                            src={proto.url}
-                            title={`Preview interaktif ${proto.title}`}
-                            loading="lazy"
-                            className={clsx(
-                              "absolute inset-0 size-full border-0 bg-white transition-opacity duration-700 ease-in-out",
-                              isActive
-                                ? "opacity-100 pointer-events-auto"
-                                : "opacity-0 pointer-events-none",
-                            )}
-                          />
-                        );
-                      }
-
-                      return (
-                        <img
-                          key={proto.id}
-                          src={proto.image}
-                          alt={proto.title}
-                          className={clsx(
-                            "absolute inset-0 size-full object-cover transition-all duration-700 ease-in-out",
-                            isActive
-                              ? "opacity-100 scale-100"
-                              : "opacity-0 scale-105 pointer-events-none",
-                          )}
-                        />
-                      );
-                    })}
+                    {activeProto.livePreview ? (
+                      <iframe
+                        key={activeProto.id}
+                        src={activeProto.url}
+                        title={`Preview interaktif ${activeProto.title}`}
+                        loading="lazy"
+                        className="absolute inset-0 size-full border-0 bg-white"
+                      />
+                    ) : (
+                      <img
+                        key={activeProto.id}
+                        src={activeProto.image}
+                        alt={activeProto.title}
+                        className="absolute inset-0 size-full object-cover"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
