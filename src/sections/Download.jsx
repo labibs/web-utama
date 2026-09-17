@@ -10,9 +10,9 @@ const prototypes = [
     subtitle: "Solusi Berbagi Tumpangan",
     description:
       "Inovasi transportasi cerdas yang memudahkan pengguna berbagi tumpangan dengan aman, nyaman, dan efisien. Dirancang dengan UI modern untuk pengalaman mobilitas yang mulus.",
-    url: "https://landing-numpak.vercel.app",
-    displayUrl: "landing-numpak.vercel.app",
-    image: "/images/ss-rutee.PNG", // Menggunakan asset yang tersedia
+    url: "https://numpak.vercel.app/",
+    displayUrl: "numpak.vercel.app",
+    livePreview: true,
   },
   {
     id: "1",
@@ -20,9 +20,9 @@ const prototypes = [
     subtitle: "Point of Sale & Inventory",
     description:
       "Sistem kasir cerdas yang memangkas kebutuhan infrastruktur rumit. Cukup dengan smartphone, Anda mendapatkan kendali bisnis real-time yang powerful. Sangat fleksibel untuk retail, resto, hingga jasa, dengan fitur modular yang bisa diaktivasi sesuai kebutuhan unik bisnis Anda.",
-    url: "https://sakti-pos.vercel.app/",
-    displayUrl: "sakti-pos.vercel.app",
-    image: "/images/sakti-yes.png",
+    url: "http://sakti-pos.sakte.id/",
+    displayUrl: "sakti-pos.sakte.id",
+    livePreview: true,
   },
   {
     id: "2",
@@ -85,7 +85,7 @@ const Download = () => {
     <section>
       <Element
         name="prototipe"
-        className="g7 relative pb-32 pt-24 max-lg:pb-24 max-md:py-16"
+        className="relative pb-32 pt-24 max-lg:pb-24 max-md:py-16"
       >
         <div className="container">
           <div className="flex items-center gap-16 max-lg:flex-col lg:flex-row max-lg:items-start">
@@ -220,11 +220,11 @@ const Download = () => {
                   transformStyle: "preserve-3d",
                 }}
               >
-                <div className="relative w-[260px] h-[520px] sm:w-[300px] sm:h-[600px] md:w-[330px] md:h-[580px] bg-[#111] rounded-[40px] sm:rounded-[50px] p-2 border-[4px] sm:border-[6px] border-[#333] shadow-[20px_20px_50px_rgba(0,0,0,0.5)]">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 sm:w-32 sm:h-7 bg-[#111] rounded-b-2xl z-20 flex items-center justify-center">
+                <div className="relative w-[285px] h-[570px] sm:w-[320px] sm:h-[640px] md:w-[350px] md:h-[620px] overflow-hidden rounded-[36px] border-[3px] border-[#202226] bg-[#111] p-[3px] shadow-[20px_20px_50px_rgba(0,0,0,0.5)] sm:rounded-[44px] sm:border-[4px] sm:p-1">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 sm:w-32 sm:h-6 bg-[#111] rounded-b-2xl z-20 flex items-center justify-center">
                     <div className="w-8 h-1 sm:w-10 sm:h-1 bg-[#222] rounded-full" />
                   </div>
-                  <div className="relative size-full overflow-hidden rounded-[30px] sm:rounded-[40px] bg-black">
+                  <div className="relative size-full overflow-hidden rounded-[31px] bg-white sm:rounded-[38px]">
                     {activeProto.livePreview ? (
                       <iframe
                         key={activeProto.id}
