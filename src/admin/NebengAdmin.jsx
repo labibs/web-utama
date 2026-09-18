@@ -213,8 +213,10 @@ const NebengAdmin = () => {
                 className="h-full w-auto object-contain"
                 alt="screen"
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                <button
+              <div className="absolute inset-0 bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                  <button
+                    type="button"
+                    aria-label="Edit menu Numpak"
                   onClick={() => {
                     setIsEditing(true);
                     setCurrentId(screen.$id);
@@ -229,7 +231,9 @@ const NebengAdmin = () => {
                 >
                   <Edit2 size={18} />
                 </button>
-                <button
+                  <button
+                    type="button"
+                    aria-label="Hapus menu Numpak"
                   onClick={() => handleDelete(screen.$id)}
                   className="p-3 bg-red-500 rounded-full text-white hover:scale-110 transition-transform"
                 >
