@@ -140,7 +140,7 @@ const ServicesAdmin = () => {
                 {formData.features.map((f, idx) => (
                   <div key={idx} className="flex items-center justify-between p-3 bg-[#05091D] border border-[#334679] rounded-lg group">
                     <span className="text-sm">{f}</span>
-                    <button type="button" onClick={() => removeFeature(idx)} className="text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><X size={16} /></button>
+                    <button type="button" aria-label="Hapus fitur" onClick={() => removeFeature(idx)} className="text-red-500 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"><X size={16} /></button>
                   </div>
                 ))}
               </div>
@@ -192,9 +192,9 @@ const ServiceCard = ({ service, onEdit, onDelete }) => (
       <p className="text-xs text-p5 opacity-70 line-clamp-1">{service.caption}</p>
       <p className="text-[10px] text-p1 mt-1">{service.features?.length || 0} Fitur Terdaftar</p>
     </div>
-    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-      <button onClick={onEdit} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-p1 hover:border-p1 transition-all"><Edit2 size={16} /></button>
-      <button onClick={onDelete} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-red-500 hover:border-red-500 transition-all"><Trash2 size={16} /></button>
+    <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+      <button type="button" aria-label="Edit layanan" onClick={onEdit} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-p1 hover:border-p1 transition-all"><Edit2 size={16} /></button>
+      <button type="button" aria-label="Hapus layanan" onClick={onDelete} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-red-500 hover:border-red-500 transition-all"><Trash2 size={16} /></button>
     </div>
   </div>
 );
