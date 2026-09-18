@@ -116,9 +116,9 @@ const FeaturesAdmin = () => {
               <img src={f.icon} className="w-12 h-12" />
               <div><h4 className="font-bold">{f.title}</h4><p className="text-xs text-p5 opacity-60">{f.caption}</p></div>
             </div>
-            <div className="flex gap-2 opacity-0 group-hover:opacity-100">
-              <button onClick={() => { setIsEditing(true); setCurrentId(f.$id); setFormData({ title: f.title, caption: f.caption, text: f.text, icon: f.icon, button_title: f.button_title, button_icon: f.button_icon }); }} className="p-2 text-p1"><Edit2 size={16} /></button>
-              <button onClick={async () => { if(confirm("Hapus?")) { await databases.deleteDocument(DB_ID, COL_ID, f.$id); fetchFeatures(); } }} className="p-2 text-red-500"><Trash2 size={16} /></button>
+            <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100">
+              <button aria-label="Edit layanan" onClick={() => { setIsEditing(true); setCurrentId(f.$id); setFormData({ title: f.title, caption: f.caption, text: f.text, icon: f.icon, button_title: f.button_title, button_icon: f.button_icon }); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="p-2 text-p1"><Edit2 size={16} /></button>
+              <button aria-label="Hapus layanan" onClick={async () => { if(confirm("Hapus?")) { try { await databases.deleteDocument(DB_ID, COL_ID, f.$id); fetchFeatures(); } catch (error) { alert("Gagal menghapus: " + error.message); } } }} className="p-2 text-red-500"><Trash2 size={16} /></button>
             </div>
           </div>
         ))}
