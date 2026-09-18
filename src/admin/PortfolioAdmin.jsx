@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { databases, storage } from "../lib/appwrite";
 import { ID, Query } from "appwrite";
 import { Plus, Trash2, Edit2, Upload, Save, Loader2, X } from "lucide-react";
-import Button from "../components/Button";
 
 const PortfolioAdmin = () => {
   const [projects, setProjects] = useState([]);
@@ -154,7 +153,7 @@ const PortfolioAdmin = () => {
                   {formData.gallery_urls.map((url, idx) => (
                     <div key={idx} className="relative group aspect-square rounded-lg overflow-hidden border border-[#334679]">
                       <img src={url} className="w-full h-full object-cover" />
-                      <button type="button" onClick={() => removeGalleryImage(idx)} className="absolute top-1 right-1 p-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><X size={10} /></button>
+                      <button type="button" aria-label="Hapus gambar galeri" onClick={() => removeGalleryImage(idx)} className="absolute top-1 right-1 p-1 bg-red-500 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"><X size={10} /></button>
                     </div>
                   ))}
                   {formData.gallery_urls.length < 5 && (
@@ -180,9 +179,9 @@ const PortfolioAdmin = () => {
           <div key={project.$id} className="bg-[#0C1838] border border-[#334679] rounded-3xl overflow-hidden group hover:border-p1/50 transition-all">
             <div className="relative h-40">
               <img src={project.screenshot_url} className="w-full h-full object-cover" alt="preview" />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                <button onClick={() => { setIsEditing(true); setCurrentId(project.$id); setFormData({ title: project.title, category: project.category, description: project.description, logo_url: project.logo_url, screenshot_url: project.screenshot_url, gallery_urls: project.gallery_urls || [] }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="p-3 bg-p1 rounded-full text-s1 hover:scale-110 transition-transform"><Edit2 size={18} /></button>
-                <button onClick={() => handleDelete(project.$id)} className="p-3 bg-red-500 rounded-full text-white hover:scale-110 transition-transform"><Trash2 size={18} /></button>
+              <div className="absolute inset-0 bg-black/60 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                <button type="button" aria-label="Edit projek" onClick={() => { setIsEditing(true); setCurrentId(project.$id); setFormData({ title: project.title, category: project.category, description: project.description, logo_url: project.logo_url, screenshot_url: project.screenshot_url, gallery_urls: project.gallery_urls || [] }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="p-3 bg-p1 rounded-full text-s1 hover:scale-110 transition-transform"><Edit2 size={18} /></button>
+                <button type="button" aria-label="Hapus projek" onClick={() => handleDelete(project.$id)} className="p-3 bg-red-500 rounded-full text-white hover:scale-110 transition-transform"><Trash2 size={18} /></button>
               </div>
             </div>
             <div className="p-6">
