@@ -114,9 +114,9 @@ const FaqAdmin = () => {
               </div>
               <p className="text-sm text-p5 opacity-70 line-clamp-2">{faq.answer}</p>
             </div>
-            <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <button onClick={() => { setIsEditing(true); setCurrentId(faq.$id); setFormData({ question: faq.question, answer: faq.answer, order: faq.order }); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-p1 hover:border-p1 transition-all"><Edit2 size={16} /></button>
-              <button onClick={() => handleDelete(faq.$id)} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-red-500 hover:border-red-500 transition-all"><Trash2 size={16} /></button>
+            <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+              <button aria-label="Edit FAQ" onClick={() => { setIsEditing(true); setCurrentId(faq.$id); setFormData({ question: faq.question, answer: faq.answer, order: faq.order }); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-p1 hover:border-p1 transition-all"><Edit2 size={16} /></button>
+              <button aria-label="Hapus FAQ" onClick={() => handleDelete(faq.$id)} className="p-2 bg-[#05091D] border border-[#334679] rounded-lg text-red-500 hover:border-red-500 transition-all"><Trash2 size={16} /></button>
             </div>
           </div>
         ))}
