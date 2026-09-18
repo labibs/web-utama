@@ -147,9 +147,9 @@ const TestimonialsAdmin = () => {
                   <p className="text-[10px] text-p1 uppercase tracking-wider">{t.role}</p>
                 </div>
               </div>
-              <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={() => { setIsEditing(true); setCurrentId(t.$id); setFormData({ name: t.name, role: t.role, comment: t.comment, avatar_url: t.avatar_url }); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="p-2 text-p1 hover:bg-p1/10 rounded-lg"><Edit2 size={14} /></button>
-                <button onClick={() => handleDelete(t.$id)} className="p-2 text-red-500 hover:bg-red-500/10 rounded-lg"><Trash2 size={14} /></button>
+              <div className="flex gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                <button type="button" aria-label="Edit testimoni" onClick={() => { setIsEditing(true); setCurrentId(t.$id); setFormData({ name: t.name, role: t.role, comment: t.comment, avatar_url: t.avatar_url }); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="p-2 text-p1 hover:bg-p1/10 rounded-lg"><Edit2 size={14} /></button>
+                <button type="button" aria-label="Hapus testimoni" onClick={() => handleDelete(t.$id)} className="p-2 text-red-500 hover:bg-red-500/10 rounded-lg"><Trash2 size={14} /></button>
               </div>
             </div>
             <p className="text-sm text-p5 italic opacity-80 leading-relaxed">&quot;{t.comment}&quot;</p>
